@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: 
+# key: envbx
+# --
+#!/usr/bin/env bash
+
+### `(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`
+### ${1:description}
+###
+### copyright (c) `(format-time-string "%Y" (current-time))`. all rights reserved.
+### `user-full-name` <`user-mail-address`>
+`(progn (normal-mode) "")`
+$0

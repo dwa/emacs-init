@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+EINIT=~/.emacs.d/einit
+MYRC=~/.emacs.d/rc
+
+if [[ ! -d ${MYRC} ]]; then
+    echo "${MYRC} doesn't exist"
+    mkdir -p ${MYRC}
+fi
+
+for i in $(ls -1 ${EINIT}); do
+    NAME=$(expr match ${i} "^r\?ei..--\(.*\)")
+    mv ${EINIT}/${i} ${MYRC}/rc--${NAME}
+    ln -s ${MYRC}/rc--${NAME} ${EINIT}/$i
+done

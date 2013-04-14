@@ -1,0 +1,5 @@
+(:name coffeelintnode
+       :website "https://github.com/ajkavanagh/coffeelintnode.git"
+       :description "coffeelint + node + emacs flymake support."
+       :type github
+       :pkgname "ajkavanagh/coffeelintnode")

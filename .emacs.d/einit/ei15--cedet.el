@@ -1,0 +1,1 @@
+../rc/rc--cedet.el

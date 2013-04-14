@@ -1,0 +1,5 @@
+(:name edit-list
+       :type github
+       :pkgname "emacsmirror/edit-list"
+       :description "edit a single list"
+       :website "http://mwolson.org/static/dist/elisp/")

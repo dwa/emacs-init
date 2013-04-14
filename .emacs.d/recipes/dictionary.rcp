@@ -1,0 +1,6 @@
+(:name dictionary
+       :website "http://www.myrkr.in-berlin.de/dictionary/"
+       :description "Emacs package for talking to a dictionary server"
+       :type git
+       :url "http://github.com/myrkr/dictionary-el"
+       :build `(,(concat "make EMACS=" el-get-emacs)))
