@@ -1,5 +1,4 @@
-;;; Time-stamp: <2013-04-14 10:25:38 dwa>
-
+;;; Time-stamp: <2013-07-30 01:04:34 dwa>
 
 (when (>= emacs-major-version 24)
   (eval-after-load "package"
@@ -14,23 +13,13 @@
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (unless (require 'el-get nil 'noerror)
-  (shell-command "curl -s -L 'https://raw.github.com/dimitri/el-get/master/el-get-install.el'")
   (with-current-buffer
-;      (url-retrieve-synchronously
-;       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-      "*Shell Command Output*"
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
     (let (el-get-master-branch)
-      (goto-char (point-max))
-;      (end-of-buffer)
+      (end-of-buffer)
       (eval-print-last-sexp))))
 
-;; FIXME: fulhack
-;; TODO: at least try and make it asynchronous
-(defun my-url-retrieve (url callback &optional cbargs silent inhibit-cookies)
-  (with-temp-buffer
-    (call-process "curl" nil t nil "-s" "-L" url)
-    (apply callback  (cons nil cbargs))))
-(defalias 'url-retrieve 'my-url-retrieve)
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/recipes")
 (setq el-get-sources
@@ -128,10 +117,6 @@
                                    coffeelintnode-autostart 'true)))
         clojure-mode
         swank-clojure
-	(:name color-theme
-	       :after (progn (require 'wyvern)
-			     (wyvern)
-			     ))
         color-moccur
         moccur-edit
 ;        darcsum
@@ -154,8 +139,9 @@
 			(require 'ein)
                         (setq ein:use-auto-complete-superpack t
                               ein:propagate-connect t)
-                        (setq ein:connect-default-notebook "8888/My_Notebook")
+                        (setq ein:connect-default-notebook "8888/SeamlessNotebook")
                         (add-hook 'python-mode-hook 'ein:connect-to-default-notebook)
+                        (add-hook 'ein:connect-mode-hook 'ein:jedi-setup)
                         ;; load notebook list if Emacs is idle for 3 sec after start-up
                         (run-with-idle-timer 3 nil #'ein:notebooklist-load)))
         edit-list
@@ -190,6 +176,8 @@
                             (add-hook 'nxml-mode-hook 'my-nxml-hook)))))
         (:name lacarte
                :after (progn (require 'lacarte)))
+        (:name jedi
+               :after (progn (setq jedi:setup-keys t)))
         (:name js2
                :after (progn (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
                              (add-hook 'js2-mode-hook
@@ -197,7 +185,6 @@
                                           (local-set-key (kbd "M-n") 'next-error)
                                           (local-set-key (kbd "M-p") 'previous-error)))))
         offlineimap
-        org-s5
         paredit
         (:name parenface
                :after (progn
@@ -207,12 +194,15 @@
                           (require 'parenface))))
         (:name pcmpl-git :after (require 'pcmpl-git))
         (:name pcmpl-ssh :after (require 'pcmpl-ssh))
-        ;; (:name flymake
-        ;;        :after (lambda ()
-        ;;                 (defun flymake-get-tex-args (file-name)
-        ;;                   (list "chktex" (list "-q" "-v0" file-name)))))
-        flymake-cursor
-	flymake-shell
+        (:name flycheck :after (progn (defun my-flycheck-keybindings ()
+                                        (interactive)
+                                        (local-set-key (kbd "C-c C-k") 'flycheck-buffer)
+                                        (local-set-key (kbd "M-n") 'next-error)
+                                        (local-set-key (kbd "M-p") 'previous-error))
+
+                                      (add-hook 'flycheck-mode-hook
+                                                #'my-flycheck-keybindings)
+                                      (add-hook 'after-init-hook #'global-flycheck-mode)))
         (:name session
 	       :after (progn (add-hook 'after-init-hook 'session-initialize)))
         (:name auto-complete-yasnippet)

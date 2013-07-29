@@ -1,4 +1,4 @@
-;;; Time-stamp: <2013-04-14 00:25:06 dwa>
+;;; Time-stamp: <2013-07-30 01:08:03 dwa>
 
 
 ;;; Code:
@@ -8,11 +8,11 @@
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 (add-hook 'python-mode-hook 'turn-on-eldoc-mode)
-
-(add-hook 'python-mode-hook
-          #'(lambda ()
-              (define-key py-mode-map (kbd "M-<tab>") 'auto-complete)
-              (add-to-list 'ac-sources 'ac-source-ropemacs)))
+(add-hook 'python-mode-hook 'jedi:setup)
+;; (add-hook 'python-mode-hook
+;;           #'(lambda ()
+;;               (define-key py-mode-map (kbd "M-<tab>") 'auto-complete)
+;;               (add-to-list 'ac-sources 'ac-source-ropemacs)))
 
 ;; needed for >python-mode-6.0.3-r1
 ;; this will be fixed in later versions of python-mode (>6.0.5 ?)
@@ -26,19 +26,8 @@
 
 (setq py-shell-switch-buffers-on-execute nil)
 
-;; Initialize Pymacs
-(require 'pymacs)
-(autoload 'pymacs-exec "pymacs" nil t)
 
-(pymacs-load "ropemacs" "rope-")
-(ac-ropemacs-initialize)
-;(setq ropemacs-enable-autoimport t)
-
-(add-hook 'py-shell-hook
-          (lambda ()
-;;            (define-key py-shell-map (kbd "C-<tab>") 'anything-ipython-complete)
-	    (add-to-list 'ac-sources 'ac-source-ropemacs)))
-
+;; FIXME: remove since it's not actually used anymore:
 (eval-after-load "flymake";; when (load "flymake" t)
   '(progn
      (defun flymake-pylint-init ()
@@ -64,9 +53,7 @@
 
 
      (add-to-list 'flymake-allowed-file-name-masks
-                  '("\\.py\\'" flymake-pycheckers-init))
-
-     (add-hook 'python-mode-hook 'my-flymake-keybindings)))
+                  '("\\.py\\'" flymake-pycheckers-init))))
 
 
 (defun peRtty-python ()
@@ -79,9 +66,8 @@
 ;; http://pedrokroger.net/2010/07/configuring-emacs-as-a-python-ide-2/
 ;; make autopair work with single and triple quotes:
 (add-hook 'python-mode-hook
-          #'(lambda ()
-              ;; (push '(?' . ?')
-              ;;       (getf autopair-extra-pairs :code))
+          #'(lambda () (push '(?' . ?')
+                             (getf autopair-extra-pairs :code))
               (setq autopair-handle-action-fns
                     (list #'autopair-default-handle-action
                           #'autopair-python-triple-quote-action))))
