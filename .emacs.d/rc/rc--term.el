@@ -1,6 +1,6 @@
-;;; Time-stamp: <2013-07-30 00:08:02 dwa>
+;;; Time-stamp: <2013-08-01 00:35:29 dwa>
 
-(when system-uses-terminfo
+(defun my-arrow-escape-sequences ()
   (define-key input-decode-map "\e[1;2D" [S-left])
   (define-key input-decode-map "\e[1;2C" [S-right])
   (define-key input-decode-map "\e[1;2B" [S-down])
@@ -43,9 +43,13 @@
   (define-key input-decode-map "\e[1;8F" [C-M-end])
   (define-key input-decode-map "\e[1;8H" [C-M-home]))
 
+(defadvice server-create-tty-frame
+  (after get-C/M/S-arrow-keys-to-work activate)
+  "Use other escape sequences for the arrow + Ctrl/Meta/Shift keys"
+  (my-arrow-escape-sequences))
 
-;; (defadvice terminal-init-xterm (after select-shift-up activate)
-;; )
-
+;; https://lists.gnu.org/archive/html/help-gnu-emacs/2011-05/msg00211.html
+(when system-uses-terminfo
+  (my-arrow-escape-sequences))
 
 ;;; the end;
