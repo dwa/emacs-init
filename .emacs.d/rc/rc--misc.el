@@ -1,4 +1,4 @@
-;;; Time-stamp: <2013-04-14 12:02:12 dwa>
+;;; Time-stamp: <2013-08-01 23:35:48 dwa>
 
 
 ;;; Code:
@@ -192,6 +192,15 @@
   )
 
 (global-set-key (kbd "C-c b") 'browse-url-at-point)
+
+
+(require 'xfrp_find_replace_pairs)
+(defun swap-brackets-in-region (start end)
+  (interactive "r")
+  (replace-pairs-region start end '(["(" "["]
+                                    [")" "]"]
+                                    ["[" "("]
+                                    ["]" ")"])))
 
 
 ;;; ----------------------------------------------------------------- [the end]
