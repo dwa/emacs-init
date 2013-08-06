@@ -1,4 +1,4 @@
-;;; Time-stamp: <2013-07-30 01:04:34 dwa>
+;;; Time-stamp: <2013-08-04 02:09:04 dwa>
 
 (when (>= emacs-major-version 24)
   (eval-after-load "package"
@@ -177,7 +177,8 @@
         (:name lacarte
                :after (progn (require 'lacarte)))
         (:name jedi
-               :after (progn (setq jedi:setup-keys t)))
+               :after (progn (add-hook 'python-mode-hook 'jedi:setup)
+                             (setq jedi:tooltip-method nil)))
         (:name js2
                :after (progn (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
                              (add-hook 'js2-mode-hook
