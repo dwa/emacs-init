@@ -1,4 +1,4 @@
-;;; Time-stamp: <2013-04-14 21:28:57 dwa>
+;;; Time-stamp: <2014-04-15 17:59:27 dwa>
 
 ;;; Code:
 
@@ -42,11 +42,23 @@
 	("freenode.*"
 	 "#emacs"
          "#python"
-         "#julia"
-;	 "#latex"
-;         "#clojure"
+         "#ipython"
+         "#fabric"
+;         "#pypy"
 	 "#R"
-)))
+	 "##pentaho"
+	 "##saiku"
+         "#hy"
+         "#apache-kafka"
+         "##whoosh"
+         "#kivy"
+         "#databrewery"
+         "#discoproject"
+         "#rethinkdb"
+         "#boto"
+         "#juju"
+         "#maas"
+         )))
 
 (setq erc-fill-column 79)
 (erc-scrolltobottom-mode 1)
