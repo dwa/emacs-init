@@ -1,12 +1,11 @@
-;;; Time-stamp: <2013-08-04 02:09:04 dwa>
+;;; Time-stamp: <2014-02-13 12:26:34 dwa>
 
 (when (>= emacs-major-version 24)
   (eval-after-load "package"
     '(progn (add-to-list 'package-archives
-                         '("marmalade" . "http://marmalade-repo.org/packages/") t)
-            (add-to-list 'package-archives
                          '("melpa" . "http://melpa.milkbox.net/packages/") t)
-            (setq package-)))
+            (add-to-list 'package-archives
+                         '("marmalade" . "http://marmalade-repo.org/packages/") t)))
   (package-initialize))
 
 ;;; Code:
@@ -24,6 +23,7 @@
 (add-to-list 'el-get-recipe-path "~/.emacs.d/recipes")
 (setq el-get-sources
       '(el-get
+        (:name ack-menu)
         (:name anything
                ;; :after (lambda ()
                ;;          (require 'anything-complete)
@@ -139,7 +139,7 @@
 			(require 'ein)
                         (setq ein:use-auto-complete-superpack t
                               ein:propagate-connect t)
-                        (setq ein:connect-default-notebook "8888/SeamlessNotebook")
+                        (setq ein:connect-default-notebook "88888/SeamlessNotebook")
                         (add-hook 'python-mode-hook 'ein:connect-to-default-notebook)
                         (add-hook 'ein:connect-mode-hook 'ein:jedi-setup)
                         ;; load notebook list if Emacs is idle for 3 sec after start-up
@@ -178,7 +178,8 @@
                :after (progn (require 'lacarte)))
         (:name jedi
                :after (progn (add-hook 'python-mode-hook 'jedi:setup)
-                             (setq jedi:tooltip-method nil)))
+                             ;(setq jedi:tooltip-method nil)
+                             ))
         (:name js2
                :after (progn (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
                              (add-hook 'js2-mode-hook
@@ -186,7 +187,7 @@
                                           (local-set-key (kbd "M-n") 'next-error)
                                           (local-set-key (kbd "M-p") 'previous-error)))))
         offlineimap
-        paredit
+;;        paredit
         (:name parenface
                :after (progn
                         ;;
@@ -206,6 +207,20 @@
                                       (add-hook 'after-init-hook #'global-flycheck-mode)))
         (:name session
 	       :after (progn (add-hook 'after-init-hook 'session-initialize)))
+        (:name smartparens
+;               :after (progn (require 'smartparens-config))
+               )
+        (:name visual-regexp)
+        (:name visual-regexp-steroids
+               :after (progn (require 'visual-regexp-steroids)
+                             (define-key global-map (kbd "C-c r") 'vr/replace)
+                             (define-key global-map (kbd "C-c q") 'vr/query-replace)
+                             ;; to use visual-regexp's isearch instead of the
+                             ;; built-in regexp isearch, also include the
+                             ;; following lines:
+                             (define-key esc-map (kbd "C-r") 'vr/isearch-backward) ;; C-M-r
+                             (define-key esc-map (kbd "C-s") 'vr/isearch-forward) ;; C-M-s
+                             ))
         (:name auto-complete-yasnippet)
         (:name yasnippet
                :after (progn (setq yas/trigger-key "S-SPC")
