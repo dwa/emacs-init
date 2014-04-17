@@ -1,4 +1,4 @@
-;;; Time-stamp: <2013-08-06 16:59:06 dwa>
+;;; Time-stamp: <2013-08-14 23:58:26 dwa>
 
 ;;; Code:
 
@@ -22,7 +22,7 @@
 (defun peRtty-python ()
   (interactive)
   (substitute-patterns-with-unicode
-   (list (cons "\\(lambda\\)[[:blank:]]*[^:]+:" 'lambda))))
+   (list (cons "\\(lambda\\)[[:blank:]]*[^:]*:" 'lambda))))
 
 (add-hook 'python-mode-hook 'peRtty-python)
 
