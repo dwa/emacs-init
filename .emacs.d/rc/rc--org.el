@@ -1,4 +1,4 @@
-;;; Time-stamp: <2013-04-14 12:11:39 dwa>
+;;; Time-stamp: <2013-09-12 23:31:44 dwa>
 
 
 ;;; Code:
@@ -48,7 +48,7 @@
      (add-to-list 'org-agenda-files "~/org/")
      (setq org-default-notes-file (concat org-directory "notes.org"))))
 
-(define-key global-map "\C-cr" 'org-remember)
+;(define-key global-map "\C-cr" 'org-remember)
 
 
 (setq org-capture-templates
