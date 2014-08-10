@@ -1,4 +1,4 @@
-;;; Time-stamp: <2014-04-15 17:59:27 dwa>
+;;; Time-stamp: <2014-08-08 15:49:13 dwa>
 
 ;;; Code:
 
@@ -24,7 +24,8 @@
 
 (setq erc-prompt-for-nickserv-password nil)
 
-;(setq erc-join-buffer 'frame)
+(setq erc-join-buffer 'bury)
+
 (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT")
       erc-track-exclude-server-buffer t)
 
@@ -43,21 +44,16 @@
 	 "#emacs"
          "#python"
          "#ipython"
+         "#ansible"
          "#fabric"
-;         "#pypy"
 	 "#R"
 	 "##pentaho"
 	 "##saiku"
          "#hy"
-         "#apache-kafka"
          "##whoosh"
          "#kivy"
          "#databrewery"
-         "#discoproject"
          "#rethinkdb"
-         "#boto"
-         "#juju"
-         "#maas"
          )))
 
 (setq erc-fill-column 79)
