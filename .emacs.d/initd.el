@@ -1,6 +1,8 @@
-;;; Time-stamp: <2013-04-14 11:16:10 dwa>
+;;; initd.el --- Summary
+;;; Time-stamp: <2014-08-09 21:54:54 dwa>
 ;;; David Wallin <dwa@havanaclub.org>
 
+;;; Code:
 (defvar initd-init-dir "~/.emacs.d/einit"
   "Directory containing init files.")
 
@@ -12,3 +14,4 @@
                                        initd-init-file-regexp nil)))
 
 (provide 'initd)
+;;; initd.el ends here
