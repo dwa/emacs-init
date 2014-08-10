@@ -131,7 +131,7 @@
         ;;                 (global-set-key "\C-cm" 'dictem-run-match)))
         (:name dictionary
                :after (progn
-                        (setq dictionary-server "localhost")
+                        ;(setq dictionary-server "localhost")
                         (global-set-key "\C-cs" 'dictionary-search)
                         (global-set-key "\C-cm" 'dictionary-match-words)))
         (:name ein
