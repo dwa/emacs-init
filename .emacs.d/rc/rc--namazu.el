@@ -1,4 +1,4 @@
-;;; Time-stamp: <2013-04-14 00:25:06 dwa>
+;;; Time-stamp: <2014-08-10 20:25:32 dwa>
 
 
 ;;; Code:
@@ -26,51 +26,5 @@
      (define-key namazu-mode-map (kbd "!") 'namazu-browse-file)
      (define-key namazu-mode-map (kbd "C-x C-j") 'namazu-dired-jump)))
 
-
-(defvar anything-c-source-namazu
-  '((name . "namazu")
-    (candidates . (lambda ()
-                    (start-process-shell-command "namazu-process" nil
-                                                 (format  "namazu -l %s" anything-pattern namazu-default-dir))))
-    (type . file)
-    (requires-pattern . 3)
-;;     (action . (
-;; 	       ("Send to browser" . (lambda (candidate)
-;; 				      ()))
-;; 	       ("Namazu" . (lambda (candidate)
-;; 			     (namazu 1 anything-pattern namazu-default-dir)))))
-    (delayed))
-  "Source for retrieving files via the command line
-utility namazu.")
-(add-to-list 'anything-sources anything-c-source-namazu)
-
-
-(defvar anything-c-source-recoll
-  '((name . "recoll")
-    (candidates . (lambda ()
-                    (start-process-shell-command
-                     "recoll-process" nil
-                     (format  "recoll -t -b %s" anything-pattern))))
-    (type . file)
-    (requires-pattern . 3)
-    ;;     (action . (
-    ;; 	       ("Send to browser" . (lambda (candidate)
-    ;; 				      ()))
-    ;; 	       ("Namazu" . (lambda (candidate)
-    ;; 			     (namazu 1 anything-pattern namazu-default-dir)))))
-    (delayed))
-  "Source for retrieving files via the command line utility recoll.")
-
-(defun anything-recoll ()
-  "Anything recoll search"
-  (interactive)
-  (anything-other-buffer '(anything-c-source-recoll)
-                         "*anything recoll*"))
-
-(defun anything-namazu ()
-  "Anything namazu search"
-  (interactive)
-  (anything-other-buffer '(anything-c-source-namazu)
-                         "*anything namazu*"))
 
 ;;; ----------------------------------------------------------------- [the end]

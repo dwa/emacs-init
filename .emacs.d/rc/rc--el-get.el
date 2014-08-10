@@ -1,4 +1,4 @@
-;;; Time-stamp: <2014-08-10 03:12:27 dwa>
+;;; Time-stamp: <2014-08-10 20:46:30 dwa>
 
 (when (>= emacs-major-version 24)
   (eval-after-load "package"
@@ -24,23 +24,6 @@
 (setq el-get-sources
       '(el-get
         (:name ack-menu)
-        (:name anything
-               ;; :after (lambda ()
-               ;;          (require 'anything-complete)
-               ;;          (setq anything-c-source-comint
-               ;;                '((name . "Objects / functions")
-               ;;                  (candidates . anything-c-source-comint-completions)
-               ;;                  (volatile)
-               ;;                  (action . ac-insert)))
-
-               ;;          (setq anything-comint-sources '(anything-c-source-comint))
-
-               ;;          (defun anything-comint-dynamic-simple-complete (stub completions)
-               ;;            (progn (setq anything-c-source-comint-completions completions)
-               ;;                   (anything-complete anything-comint-sources stub)))
-               ;;          (defalias 'comint-dynamic-simple-complete
-               ;;            (symbol-function 'anything-comint-dynamic-simple-complete)))
-               )
         ;; (:name autopair
         ;;        :after (progn
         ;;                 (defun turn-on-autopair () (autopair-mode 1))
@@ -117,16 +100,7 @@
         swank-clojure
         color-moccur
         moccur-edit
-;        darcsum
         dbgr
-        (:name descbinds-anything
-               :after (progn ;;(require 'descbinds-anything)
-                             (descbinds-anything-install)))
-        ;; (:name dictem
-        ;;        :after (lambda ()
-        ;;                 (setq dictem-use-existing-buffer t)
-        ;;                 (global-set-key "\C-cs" 'dictem-run-search)
-        ;;                 (global-set-key "\C-cm" 'dictem-run-match)))
         (:name dictionary
                :after (progn
                         ;(setq dictionary-server "localhost")
@@ -150,7 +124,21 @@
         gnus
         google-maps
         google-weather
-;        (:name hideshowvis )
+        (:name helm
+               :after (progn
+                        (global-set-key (kbd "M-x") 'helm-M-x)
+                        ;; This is your old M-x.
+                        (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+                        (global-set-key (kbd "C-x C-f") 'helm-find-files)
+                        (global-set-key (kbd "C-x C-b") 'helm-mini)
+                        (helm-mode 1)))
+        (:name helm-ag
+               :after (progn
+                        (global-set-key (kbd "C-x C-a") 'helm-ag)))
+        (:name helm-descbinds
+               :after (progn
+                        (helm-descbinds-install)))
         (:name html5
                :after (progn
                         (eval-after-load "rng-loc"
@@ -213,6 +201,12 @@
                         (define-key sp-keymap (kbd ")") 'sp-up-sexp)
                         (smartparens-global-mode t)
                         (show-smartparens-global-mode t)))
+        ;; (:name smex
+        ;;        :after (progn
+        ;;                 (global-set-key (kbd "M-x") 'smex)
+        ;;                 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+        ;;                 ;; This is your old M-x.
+        ;;                 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)))
         (:name visual-regexp)
         (:name visual-regexp-steroids
                :after (progn (require 'visual-regexp-steroids)

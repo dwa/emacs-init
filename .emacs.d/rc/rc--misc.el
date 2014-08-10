@@ -1,4 +1,4 @@
-;;; Time-stamp: <2014-08-09 23:29:13 dwa>
+;;; Time-stamp: <2014-08-10 20:35:16 dwa>
 
 
 ;;; Code:
@@ -152,7 +152,7 @@
       redisplay-dont-pause t)
 
 
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+;(global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 (add-hook 'ibuffer-mode-hook 'hl-line-mode)
 
