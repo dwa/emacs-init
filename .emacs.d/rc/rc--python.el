@@ -1,4 +1,4 @@
-;;; Time-stamp: <2013-08-14 23:58:26 dwa>
+;;; Time-stamp: <2014-08-10 16:06:50 dwa>
 
 ;;; Code:
 
@@ -26,10 +26,10 @@
 
 (add-hook 'python-mode-hook 'peRtty-python)
 
-(add-hook 'python-mode-hook
-          #'(lambda ()
-              (setq autopair-handle-action-fns
-                    (list #'autopair-default-handle-action
-                          #'autopair-python-triple-quote-action))))
+;; (add-hook 'python-mode-hook
+;;           #'(lambda ()
+;;               (setq autopair-handle-action-fns
+;;                     (list #'autopair-default-handle-action
+;;                           #'autopair-python-triple-quote-action))))
 
 ;;; ----------------------------------------------------------------- [the end]

@@ -209,8 +209,9 @@
                         (require 'smartparens)
                         (require 'smartparens-config)
                         (setq sp-highlight-pair-overlay nil)
+                        (sp-use-paredit-bindings)
                         (define-key sp-keymap (kbd ")") 'sp-up-sexp)
-                        (smartparens-global-strict-mode t)
+                        (smartparens-global-mode t)
                         (show-smartparens-global-mode t)))
         (:name visual-regexp)
         (:name visual-regexp-steroids

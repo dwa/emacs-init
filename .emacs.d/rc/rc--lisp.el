@@ -1,4 +1,4 @@
-;;; Time-stamp: <2014-08-09 22:27:08 dwa>
+;;; Time-stamp: <2014-08-10 16:59:52 dwa>
 
 
 ;;; Code:
@@ -73,6 +73,7 @@
   "Binds bracket keys to strange places."
 ;  (swap-bracket-keymapping)
 ;  (paredit-mode +1)
+  (smartparens-strict-mode t)
   )
 
 
