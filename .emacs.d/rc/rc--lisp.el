@@ -1,4 +1,4 @@
-;;; Time-stamp: <2013-04-14 11:57:19 dwa>
+;;; Time-stamp: <2014-08-09 22:27:08 dwa>
 
 
 ;;; Code:
@@ -72,7 +72,7 @@
 (defun my-lisp-keybindings ()
   "Binds bracket keys to strange places."
 ;  (swap-bracket-keymapping)
-  (paredit-mode +1)
+;  (paredit-mode +1)
   )
 
 

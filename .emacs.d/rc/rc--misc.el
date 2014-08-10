@@ -1,4 +1,4 @@
-;;; Time-stamp: <2013-08-01 23:35:48 dwa>
+;;; Time-stamp: <2014-08-09 23:29:13 dwa>
 
 
 ;;; Code:
@@ -139,7 +139,7 @@
 (setq tramp-default-method "scp")
 
 ;; highlights the corresponding parenthesis
-(show-paren-mode t)
+;(show-paren-mode t)
 
 ;; no blinking cursor
 (blink-cursor-mode -1)
@@ -201,6 +201,9 @@
                                     [")" "]"]
                                     ["[" "("]
                                     ["]" ")"])))
+
+(require 'keyremapping)
+(swap-bracket-keymapping-1)
 
 
 ;;; ----------------------------------------------------------------- [the end]

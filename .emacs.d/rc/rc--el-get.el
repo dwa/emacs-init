@@ -43,18 +43,18 @@
                )
 ;        anything-config
 ;        anything-R
-        (:name autopair
-               :after (progn
-                        (defun turn-on-autopair () (autopair-mode 1))
-                        (defun turn-off-autopair () (autopair-mode -1))
-                        ;; (defvar autopair-modes '(c-mode-common))
-                        ;; (dolist (mode autopair-modes)
-                        ;;   (add-hook (intern (concat (symbol-name mode) "-hook"))
-                        ;;             'turn-on-autopair))
-                        (autopair-global-mode)
-                        (eval-after-load "paredit"
-                          '(defadvice paredit-mode (before advice-disable-autopair activate)
-                             (turn-off-autopair)))))
+        ;; (:name autopair
+        ;;        :after (progn
+        ;;                 (defun turn-on-autopair () (autopair-mode 1))
+        ;;                 (defun turn-off-autopair () (autopair-mode -1))
+        ;;                 ;; (defvar autopair-modes '(c-mode-common))
+        ;;                 ;; (dolist (mode autopair-modes)
+        ;;                 ;;   (add-hook (intern (concat (symbol-name mode) "-hook"))
+        ;;                 ;;             'turn-on-autopair))
+        ;;                 (autopair-global-mode)
+        ;;                 (eval-after-load "paredit"
+        ;;                   '(defadvice paredit-mode (before advice-disable-autopair activate)
+        ;;                      (turn-off-autopair)))))
         (:name auto-complete
                :after (progn
 			(require 'auto-complete)
@@ -187,7 +187,6 @@
                                           (local-set-key (kbd "M-n") 'next-error)
                                           (local-set-key (kbd "M-p") 'previous-error)))))
         offlineimap
-;;        paredit
         (:name parenface
                :after (progn
                         ;;
@@ -208,8 +207,13 @@
         (:name session
 	       :after (progn (add-hook 'after-init-hook 'session-initialize)))
         (:name smartparens
-;               :after (progn (require 'smartparens-config))
-               )
+               :after (progn
+                        (require 'smartparens)
+                        (require 'smartparens-config)
+                        (setq sp-highlight-pair-overlay nil)
+                        (define-key sp-keymap (kbd ")") 'sp-up-sexp)
+                        (smartparens-global-strict-mode t)
+                        (show-smartparens-global-mode t)))
         (:name visual-regexp)
         (:name visual-regexp-steroids
                :after (progn (require 'visual-regexp-steroids)
