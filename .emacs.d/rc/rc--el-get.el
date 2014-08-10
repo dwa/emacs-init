@@ -1,4 +1,4 @@
-;;; Time-stamp: <2014-02-13 12:26:34 dwa>
+;;; Time-stamp: <2014-08-10 03:12:27 dwa>
 
 (when (>= emacs-major-version 24)
   (eval-after-load "package"
@@ -41,8 +41,6 @@
                ;;          (defalias 'comint-dynamic-simple-complete
                ;;            (symbol-function 'anything-comint-dynamic-simple-complete)))
                )
-;        anything-config
-;        anything-R
         ;; (:name autopair
         ;;        :after (progn
         ;;                 (defun turn-on-autopair () (autopair-mode 1))
