@@ -1,4 +1,4 @@
-;;; Time-stamp: <2014-08-10 14:52:55 dwa>
+;;; Time-stamp: <2014-08-10 21:03:14 dwa>
 
 (defun ansi-escape-sequences ()
   (interactive)
@@ -69,10 +69,15 @@
   (define-key input-decode-map "\e[27;5;57~" (kbd "C-9"))
 
   ;; C- (mapped from C-S-)
+  (define-key input-decode-map "\e[27;6;33~" (kbd "C-!"))
   (define-key input-decode-map "\e[27;6;34~" (kbd "C-\""))
+  (define-key input-decode-map "\e[27;6;35~" (kbd "C-#"))
+  (define-key input-decode-map "\e[27;6;36~" (kbd "C-$"))
+  (define-key input-decode-map "\e[27;6;37~" (kbd "C-%"))
   (define-key input-decode-map "\e[27;6;38~" (kbd "C-&"))
   (define-key input-decode-map "\e[27;6;40~" (kbd "C-\("))
   (define-key input-decode-map "\e[27;6;41~" (kbd "C-\)"))
+  (define-key input-decode-map "\e[27;6;42~" (kbd "C-*"))
   (define-key input-decode-map "\e[27;6;125~" (kbd "C-\}"))
   (define-key input-decode-map "\e[27;6;58~" (kbd "C-:"))
   (define-key input-decode-map "\e[27;6;60~" (kbd "C-<"))
