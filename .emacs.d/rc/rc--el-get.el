@@ -1,4 +1,4 @@
-;;; Time-stamp: <2014-08-11 19:24:11 dwa>
+;;; Time-stamp: <2014-08-11 19:54:24 dwa>
 
 (when (>= emacs-major-version 24)
   (eval-after-load "package"
@@ -143,7 +143,10 @@
                         (add-to-list 'special-display-buffer-names
                                      '("*helm buffers*" (same-frame . nil)))
                         (add-to-list 'special-display-buffer-names
-                                     '("*helm mini*" (same-frame . nil)))))
+                                     '("*helm mini*" (same-frame . nil)))
+                        (set-face-attribute 'helm-selection nil
+                                            :background "#441100"
+                                            :underline nil)))
         (:name helm-ag
                :after (progn
                         (global-set-key (kbd "C-x C-a") 'helm-ag)))
