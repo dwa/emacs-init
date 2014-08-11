@@ -24,18 +24,6 @@
 (setq el-get-sources
       '(el-get
         (:name ack-menu)
-        ;; (:name autopair
-        ;;        :after (progn
-        ;;                 (defun turn-on-autopair () (autopair-mode 1))
-        ;;                 (defun turn-off-autopair () (autopair-mode -1))
-        ;;                 ;; (defvar autopair-modes '(c-mode-common))
-        ;;                 ;; (dolist (mode autopair-modes)
-        ;;                 ;;   (add-hook (intern (concat (symbol-name mode) "-hook"))
-        ;;                 ;;             'turn-on-autopair))
-        ;;                 (autopair-global-mode)
-        ;;                 (eval-after-load "paredit"
-        ;;                   '(defadvice paredit-mode (before advice-disable-autopair activate)
-        ;;                      (turn-off-autopair)))))
         (:name auto-complete
                :after (progn
 			(require 'auto-complete)
