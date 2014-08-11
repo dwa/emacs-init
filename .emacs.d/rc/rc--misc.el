@@ -1,4 +1,4 @@
-;;; Time-stamp: <2014-08-10 20:35:16 dwa>
+;;; Time-stamp: <2014-08-11 19:06:25 dwa>
 
 
 ;;; Code:
@@ -205,5 +205,6 @@
 (require 'keyremapping)
 (swap-bracket-keymapping-1)
 
+(setq gc-cons-threshold 20000000)
 
 ;;; ----------------------------------------------------------------- [the end]
