@@ -5,7 +5,7 @@ venv=$(basename $VIRTUAL_ENV)
 [[ ! -e ${VIRTUAL_ENV}/.project ]] && exit 1
 proj=$(cat ${VIRTUAL_ENV}/.project)
 
-cat > ${proj}.dir-locals.el <<EOF
+cat > ${proj}/.dir-locals.el <<EOF
 ((python-mode . ((python-shell-interpreter . "python")
                  (python-shell-interpreter-args . "-m IPython.terminal.ipapp")
                  (python-shell-prompt-regexp . "In \\[[0-9]+\\]: ")
