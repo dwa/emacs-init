@@ -1,20 +1,11 @@
-;;; Time-stamp: <2013-04-14 00:25:06 dwa>
+;;; Time-stamp: <2015-07-15 21:39:53 davidwallin>
 
 
 ;;; Code:
 
 (when (eq system-type 'darwin)
-  ;;
-  ;; add a new info directory:
-  (add-to-list 'Info-default-directory-list (expand-file-name "~/Gentoo/usr/share/info/"))
-
-  (add-to-list 'exec-path (expand-file-name "~/Gentoo/usr/bin"))
 
   (setq mac-command-key-is-meta t)
-  ;;(setq mac-reverse-ctrl-meta t)
-  ;; (global-set-key "\M-s" 'save-buffer)
-  ;; (global-set-key "\M-v" 'yank)
-  ;; (global-set-key "\M-z" 'undo)
 
   ;;
   ;; untranslate some keypad keys:
@@ -26,12 +17,6 @@
 
   (setenv "PATH" (concat (expand-file-name "~/bin")
                          ":/usr/local/bin:" (getenv "PATH")))
-
-  (setenv "PATH" (concat (expand-file-name "~/Gentoo/usr/bin:")
-			 (expand-file-name "~/Gentoo/bin:")
-			 (expand-file-name "~/Gentoo/usr/sbin:")
-			 (expand-file-name "~/Gentoo/sbin:")
-			 (getenv "PATH")))
   ;;
   ;; Replace the xpdf as View command (with 'open') on the mac:
   (defun redefine-auctex-pdf-view-style ()
