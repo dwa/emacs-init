@@ -1,1 +1,0 @@
-../rc/rc--slime.el

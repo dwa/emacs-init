@@ -1,4 +1,4 @@
-;;; Time-stamp: <2014-08-10 16:59:52 dwa>
+;;; Time-stamp: <2015-07-16 21:50:16 davidwallin>
 
 
 ;;; Code:
@@ -71,10 +71,7 @@
 
 (defun my-lisp-keybindings ()
   "Binds bracket keys to strange places."
-;  (swap-bracket-keymapping)
-;  (paredit-mode +1)
-  (smartparens-strict-mode t)
-  )
+  (smartparens-strict-mode t))
 
 
 ;; use my lisp keybindings in emacs lisp + scheme mode:
@@ -89,62 +86,6 @@
 (add-hook 'scheme-mode-hook (lambda () (my-lisp-keybindings)))
 
 
-
-
-(defslime sbcl)
-;; (defslime cmucl)
-(defslime clisp)
-(defslime clozure)
-;; (defslime abcl)
-
-
-(add-to-list 'slime-lisp-implementations
-	     '(sbcl ("sbcl") :coding-system utf-8-unix))
-
-(add-to-list 'slime-lisp-implementations
-	     '(clisp ("clisp" "-ansi" "-I") :coding-system utf-8-unix))
-
-(add-to-list 'slime-lisp-implementations
-	     '(clozure ("ccl"
-                        "-K" "utf-8"
-                        "--eval" "(require :asdf)") :coding-system utf-8-unix))
-
-
-;;(setq slime-default-lisp "sbcl")
-
-;; SBCL wo linedit :
-;; (setq inferior-lisp-program "sbcl --noinform --no-linedit")
-
-;;(add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
-
-
-(add-hook 'inferior-lisp-mode-hook (lambda ()
-				     (inferior-slime-mode t)
-				     (my-lisp-keybindings)))
-
-(add-hook 'slime-repl-mode-hook (lambda ()
-				  (my-lisp-keybindings)))
-
-(add-hook 'lisp-mode-hook (lambda ()
-			    (slime-mode t)
-;; 			    (slime-highlight-edits-mode t)
-                            (local-set-key "\r" 'newline-and-indent)
-			    (local-set-key [C-S-tab]
-					   'slime-indent-and-complete-symbol)
-			    (local-set-key [C-S-iso-lefttab]
-					   'slime-indent-and-complete-symbol)
-
-			    ;; use my keybindings (see above):
-			    (my-lisp-keybindings)
-                            (setq lisp-indent-function
-				  'common-lisp-indent-function)
-                            (setq indent-tabs-mode nil)))
-
-;; (add-hook 'lisp-mode-hook (defun my-lisp-mode-hook ()
-;; 			    (set (make-local-variable 'lisp-indent-function)
-;; 				 'common-lisp-indent-function)))
-
-;(require 'hyperspec)
 
 (setq common-lisp-hyperspec-root
       (cond ((eq system-type 'darwin)
@@ -183,46 +124,10 @@ currently under the cursor"
 ;(define-key lisp-mode-map (kbd "C-c l") 'lispdoc)
 
 (setq pop-up-windows nil)
-;;(add-to-list 'same-window-regexps "\\*slime-repl sbcl\\(\\|<[0-9]*>\\)\\*")
-;; (defvar slime-repl-use-other-window nil)
-;; (defun slime-switch-to-output-buffer (&optional connection)
-;;   "Select the output buffer, preferably in a different window."
-;;   (interactive (list (if prefix-arg (slime-choose-connection))))
-;;   (let ((slime-dispatching-connection (or connection
-;;                                           slime-dispatching-connection)))
-;;     (set-buffer (slime-output-buffer))
-;;     (unless (eq (current-buffer) (window-buffer))
-;;       (pop-to-buffer (current-buffer) slime-repl-use-other-window))
-;;     (goto-char (point-max))))
-
-
-
-;; (defun downcase-sexp ()
-;;   (interactive)
-;;   (save-excursion
-;;     (mark-sexp)
-;;     (downcase-region (point) (mark))))
-
-;; (global-set-key "\C-cd" 'downcase-sexp)
-
-;;
-;; puts the compiler messages in a special frame:
 
 (add-to-list 'special-display-buffer-names "*compiler notes*")
-(add-to-list 'special-display-buffer-names "*SLIME Compiler-Notes*")
-
-;;
-;; ... igrep etc:
 (add-to-list 'special-display-buffer-names "*compilation*")
-
-;;
-;; puts the help buffer in a special frame:
-;;
-;; FIXME: Reuse the same frame for these:
-
 (add-to-list 'special-display-buffer-names "*Backtrace*")
-(add-to-list 'special-display-buffer-names '("*SLIME macroexpansion*" (same-frame . t)))
 
-(add-to-list 'special-display-regexps '("\\*sldb sbcl/[0-9]+\\*" (same-frame . t)))
 
 ;;; ------------------------------------------------------------------ [the end]
