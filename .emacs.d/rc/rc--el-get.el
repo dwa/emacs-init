@@ -1,4 +1,4 @@
-;;; Time-stamp: <2014-08-11 19:54:24 dwa>
+;;; Time-stamp: <2015-07-19 23:15:58 davidwallin>
 
 (when (>= emacs-major-version 24)
   (eval-after-load "package"
@@ -24,6 +24,7 @@
 (setq el-get-sources
       '(el-get
         (:name ack-menu)
+        (:name ansible-doc)
         (:name auto-complete
                :after (progn
 			(require 'auto-complete)
@@ -177,6 +178,7 @@
                             (add-hook 'nxml-mode-hook 'my-nxml-hook)))))
         (:name lacarte
                :after (progn (require 'lacarte)))
+        (:name lentic)
         (:name jedi
                :after (progn (add-hook 'python-mode-hook 'jedi:setup)
                              ;(setq jedi:tooltip-method nil)
