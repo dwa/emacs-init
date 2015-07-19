@@ -289,8 +289,7 @@
         (:name auto-complete-yasnippet)
         (:name yasnippet
                :after (progn (setq yas/trigger-key "S-SPC")
-                             (yas/global-mode 1)))
-	))
+                             (yas-global-mode 1)))))
 (el-get 'sync)
 
 
