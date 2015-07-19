@@ -141,12 +141,13 @@
                         (add-to-list 'special-display-regexps
                                      '("\\*[hH]elm.*\\*$" (same-frame . t)))
                         (add-to-list 'special-display-buffer-names
-                                     '("*helm buffers*" (same-frame . nil)))
+                                     '("*helm buffers*" (same-frame . t)))
                         (add-to-list 'special-display-buffer-names
-                                     '("*helm mini*" (same-frame . nil)))
+                                     '("*helm mini*" (same-frame . t)))
                         (set-face-attribute 'helm-selection nil
-                                            :background "#441100"
-                                            :underline nil)))
+;                                            :background "#441100"
+                                            :underline nil)
+                        ))
         (:name helm-ag
                :after (progn
                         (global-set-key (kbd "C-x C-a") 'helm-ag)))
