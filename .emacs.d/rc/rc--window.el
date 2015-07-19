@@ -1,51 +1,47 @@
-;;; Time-stamp: <2013-04-14 11:59:09 dwa>
-
-
+;;; Time-stamp: <2015-07-18 20:34:02 davidwallin>
 ;;; Code:
 
-(when t ;window-system
-  ;;
-  ;; disable the tool-bar (we don't want to load it just to disable it):
-  (if (featurep 'tool-bar)
-      (tool-bar-mode -1))
+;;
+;; disable the tool-bar
+(if (featurep 'tool-bar)
+    (tool-bar-mode -1))
 
-  (cond ((eq system-type 'darwin)
-	 (add-to-list 'default-frame-alist
-                      ;; '(font . "-apple-monaco-medium-r-normal--10-100-72-72-m-100-mac-roman"))
-		      '(font . "-apple-bitstream vera sans mono-medium-r-normal-*-12-*-*-*-*-*-mac-roman"))
-	 (setq mac-allow-anti-aliasing nil)
-	 (setenv "DISPLAY" ":0.0"))
-	((eq system-type 'gnu/linux)
-	 (if (< emacs-major-version 23)
-	     (add-to-list 'default-frame-alist '(font . "fixed"))
-           (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-9"))
-           (add-to-list 'default-frame-alist '(height . 60)))))
+(cond ((eq system-type 'darwin)
+       ;; (add-to-list 'default-frame-alist
+       ;;              ;; '(font . "-apple-monaco-medium-r-normal--10-100-72-72-m-100-mac-roman"))
+       ;;              '(font . "-*-Source Code Pro-normal-normal-normal-*-12-*-*-*-*-*-*"))
+       (setq mac-allow-anti-aliasing t)
+       (setenv "DISPLAY" ":0.0"))
+      ((eq system-type 'gnu/linux)
+       ;; (if (< emacs-major-version 23)
+       ;;     (add-to-list 'default-frame-alist '(font . "fixed"))
+       ;;   (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-9"))
+       (add-to-list 'default-frame-alist '(height . 60))))
+                                        ; )
 
-  (add-to-list 'default-frame-alist '(font . "Source Code Pro-9"))
-  (add-to-list 'default-frame-alist '(height . 52))
-  (setq font-use-system-font t)
+;;  (add-to-list 'default-frame-alist '(font . "Source Code Pro-9"))
+(add-to-list 'default-frame-alist '(font . "Source Code Pro-12"))
+(add-to-list 'default-frame-alist '(height . 50))
+(setq font-use-system-font t)
 
-  (add-to-list 'default-frame-alist '(width . 90))
-  (add-to-list 'default-frame-alist '(tool-bar-lines . 0))
+(add-to-list 'default-frame-alist '(width . 90))
+(add-to-list 'default-frame-alist '(tool-bar-lines . 0))
 
-  (set-scroll-bar-mode 'left)
+(set-scroll-bar-mode nil)
 
-  (setq initial-frame-alist default-frame-alist))
+(setq initial-frame-alist default-frame-alist)
 
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+	      (lambda (frame)
+		(load-theme 'solarized t)
+                (if (display-graphic-p frame)
+                    (enable-theme 'solarized)
+;                  (disable-theme 'solarized)
+                  )))
+  (load-theme 'solarized t))
 
 (setq view-remove-frame-by-deleting t)
-
-
-;;; -------------------------------------------------------------- [color-theme]
-
-;; (when t ;window-system
-;   (require 'wyvern)
-;   (wyvern)
-;;)
-
-;; (add-to-list 'load-path "~/sw/emacs/emacs-color-theme-solarized")
-;; (require 'color-theme-solarized)
-;; (color-theme-solarized-light)
 
 ;; font lock
 (cond ((fboundp 'global-font-lock-mode)
