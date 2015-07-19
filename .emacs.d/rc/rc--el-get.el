@@ -286,6 +286,9 @@
                              (define-key esc-map (kbd "C-r") 'vr/isearch-backward) ;; C-M-r
                              (define-key esc-map (kbd "C-s") 'vr/isearch-forward) ;; C-M-s
                              ))
+        (:name yaml-mode
+               :after (progn
+                        (add-hook 'yaml-mode-hook #'ansible-doc-mode)))
         (:name auto-complete-yasnippet)
         (:name yasnippet
                :after (progn (setq yas/trigger-key "S-SPC")
