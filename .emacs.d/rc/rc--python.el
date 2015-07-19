@@ -1,4 +1,4 @@
-;;; Time-stamp: <2014-08-10 16:06:50 dwa>
+;;; Time-stamp: <2015-07-16 18:19:38 davidwallin>
 
 ;;; Code:
 
@@ -25,11 +25,5 @@
    (list (cons "\\(lambda\\)[[:blank:]]*[^:]*:" 'lambda))))
 
 (add-hook 'python-mode-hook 'peRtty-python)
-
-;; (add-hook 'python-mode-hook
-;;           #'(lambda ()
-;;               (setq autopair-handle-action-fns
-;;                     (list #'autopair-default-handle-action
-;;                           #'autopair-python-triple-quote-action))))
 
 ;;; ----------------------------------------------------------------- [the end]
