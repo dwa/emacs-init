@@ -1,4 +1,4 @@
-;;; Time-stamp: <2012-09-26 23:22:40 dwa>
+;;; Time-stamp: <2015-07-15 20:56:58 davidwallin>
 ;;; David Wallin [dwa@havanaclub.org]
 
 ;;; Code:
@@ -25,22 +25,25 @@
 (autoload 'gnus-alias-determine-identity "gnus-alias" "" t)
 (add-hook 'message-setup-hook 'gnus-alias-determine-identity)
 
-(require 'dbus)
-(defun nm-is-connected()
-  (equal 3 (dbus-get-property
-            :system "org.freedesktop.NetworkManager" "/org/freedesktop/NetworkManager"
-            "org.freedesktop.NetworkManager" "State")))
-(defun switch-to-or-startup-gnus ()
-  "Switch to Gnus group buffer if it exists, otherwise start Gnus in plugged or unplugged state,
+
+(when (eq system-type 'gnu/linux)
+
+  (require 'dbus)
+  (defun nm-is-connected()
+    (equal 3 (dbus-get-property
+              :system "org.freedesktop.NetworkManager" "/org/freedesktop/NetworkManager"
+              "org.freedesktop.NetworkManager" "State")))
+  (defun switch-to-or-startup-gnus ()
+    "Switch to Gnus group buffer if it exists, otherwise start Gnus in plugged or unplugged state,
 depending on network status."
-  (interactive)
-  (if (or (not (fboundp 'gnus-alive-p))
-          (not (gnus-alive-p)))
-      (if (nm-is-connected)
-          (gnus)
-        (gnus-unplugged))
-    (switch-to-buffer gnus-group-buffer)
-    (delete-other-windows)))
+    (interactive)
+    (if (or (not (fboundp 'gnus-alive-p))
+            (not (gnus-alive-p)))
+        (if (nm-is-connected)
+            (gnus)
+          (gnus-unplugged))
+      (switch-to-buffer gnus-group-buffer)
+      (delete-other-windows))))
 
 (load "mailto-compose-mail")
 
