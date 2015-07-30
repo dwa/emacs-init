@@ -24,6 +24,10 @@
 (require 'initd)
 (initd-init)
 
+(use-package edit-list
+  :commands (edit-list)
+  :ensure t)
+
 
 ;;; --------------------------------------------------- [line ending conversion]
 
