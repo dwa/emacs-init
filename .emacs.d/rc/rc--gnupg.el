@@ -1,11 +1,13 @@
-;;; Time-stamp: <2013-04-14 20:36:31 dwa>
-
-
+;;; Time-stamp: <2015-07-21 12:49:47 davidwallin>
 ;;; Code:
 
-(add-to-list 'special-display-buffer-names '("*Keys*" (same-frame . t)))
+(use-package epa
+  :init
+  (add-to-list 'special-display-buffer-names '("*Keys*" (same-frame . t)))
+  (setq epa-file-cache-passphrase-for-symmetric-encryption t))
 
-(setq epa-file-cache-passphrase-for-symmetric-encryption t)
-(setq epg-user-id "dwa@havanaclub.org")
+(use-package epg
+  :init
+  (setq epg-user-id "dwa@havanaclub.org"))
 
 ;;; ----------------------------------------------------------------- [the end]
