@@ -1,29 +1,34 @@
-;;; Time-stamp: <2015-07-16 18:19:38 davidwallin>
-
+;;; Time-stamp: <2015-07-24 00:55:53 davidwallin>
 ;;; Code:
 
-(add-hook 'python-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'python-mode-hook 'jedi:setup)
+(use-package jedi
+  :commands (jedi:setup)
+  :init
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (add-hook 'inferior-python-mode-hook 'jedi:setup)
+  ;; (setq jedi:tooltip-method nil)
+  :defer t
+  :ensure t)
 
-(setq python-shell-interpreter "ipython"
-      python-shell-interpreter-args ""
-      python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-      python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-      ;; python-shell-completion-setup-code
-      ;; "from IPython.core.completerlib import module_completion"
-      ;; python-shell-completion-module-string-code
-      ;; "';'.join(module_completion('''%s'''))\n"
-      ;; python-shell-completion-string-code
-      ;; "';'.join(get_ipython().Completer.all_completions('''%s'''))\n"
-)
+(use-package python
+  :init
+  (add-hook 'python-mode-hook 'turn-on-eldoc-mode)
 
-(add-hook 'inferior-python-mode-hook 'jedi:setup)
+  (setq python-shell-interpreter "ipython"
+        python-shell-interpreter-args ""
+        python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+        python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+        ;; python-shell-completion-setup-code
+        ;; "from IPython.core.completerlib import module_completion"
+        ;; python-shell-completion-string-code
+        ;; "';'.join(get_ipython().Completer.all_completions('''%s'''))\n"
+        )
 
-(defun peRtty-python ()
-  (interactive)
-  (substitute-patterns-with-unicode
-   (list (cons "\\(lambda\\)[[:blank:]]*[^:]*:" 'lambda))))
+  (defun peRtty-python ()
+    (interactive)
+    (substitute-patterns-with-unicode
+     (list (cons "\\(lambda\\)[[:blank:]]*[^:]*:" 'lambda))))
 
-(add-hook 'python-mode-hook 'peRtty-python)
+  (add-hook 'python-mode-hook 'peRtty-python))
 
 ;;; ----------------------------------------------------------------- [the end]

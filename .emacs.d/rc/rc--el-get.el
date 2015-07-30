@@ -170,10 +170,6 @@
         (:name lacarte
                :after (progn (require 'lacarte)))
         (:name lentic)
-        (:name jedi
-               :after (progn (add-hook 'python-mode-hook 'jedi:setup)
-                             ;(setq jedi:tooltip-method nil)
-                             ))
         (:name js2
                :after (progn (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
                              (add-hook 'js2-mode-hook
