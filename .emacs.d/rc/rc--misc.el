@@ -1,4 +1,4 @@
-;;; Time-stamp: <2014-08-11 19:06:25 dwa>
+;;; Time-stamp: <2015-07-21 11:04:16 davidwallin>
 
 
 ;;; Code:
@@ -93,9 +93,6 @@
 (add-to-list 'special-display-buffer-names '("*Completions*" (same-frame . t)))
 (add-to-list 'special-display-buffer-names '("*Backtrace*" (same-frame . t)))
 
-
-(require 'edit-list)
-
 (defun dired-w3m-find-file ()
   "In Dired, visit the file or directory named on this line."
   (interactive)
@@ -137,9 +134,6 @@
 
 (require 'tramp)
 (setq tramp-default-method "scp")
-
-;; highlights the corresponding parenthesis
-;(show-paren-mode t)
 
 ;; no blinking cursor
 (blink-cursor-mode -1)
