@@ -1,4 +1,4 @@
-;;; Time-stamp: <2015-07-30 15:04:41 davidwallin>
+;;; Time-stamp: <2015-07-30 15:30:38 davidwallin>
 
 ;;; Code:
 
@@ -278,9 +278,10 @@
                :after (progn
                         (add-hook 'yaml-mode-hook #'ansible-doc-mode)))
         (:name auto-complete-yasnippet)
-        (:name yasnippet
-               :after (progn (setq yas/trigger-key "S-SPC")
-                             (yas-global-mode 1)))))
+        ;; (:name yasnippet
+        ;;        :after (progn (setq yas/trigger-key "S-SPC")
+        ;;                      (yas-global-mode 1)))
+        ))
 (el-get 'sync)
 
 

@@ -28,6 +28,14 @@
   :commands (edit-list)
   :ensure t)
 
+(use-package yasnippet
+  :ensure t
+  :config
+  (setq yas/trigger-key "S-SPC")
+  (yas-global-mode 1))
+
+;; (use-package auto-complete-yasnippet
+;;   :ensure t)
 
 ;;; --------------------------------------------------- [line ending conversion]
 
