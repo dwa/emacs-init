@@ -1,22 +1,25 @@
 ;;; -*- emacs-lisp -*-
-;;; Time-stamp: <2013-04-14 21:12:25 dwa>
+;;; Time-stamp: <2015-07-30 15:04:04 davidwallin>
 ;;; David Wallin <dwa@havanaclub.org>
 
-;; TODO :
-;; - Try and fix when to open new frames or when to split windows
-;;   C-h v special-display-regexps RET
-;;   special-display-buffer-names
-;;
+;;; Code:
 
-;(load-file "~/.emacs.d/elisp/cedet-1.1/common/cedet.el")
-;(load-file "~/.emacs.d/elisp/cedet/cedet-devel-load.el")
+(when (>= emacs-major-version 24)
+  (eval-after-load "package"
+    '(progn (add-to-list 'package-archives
+                         '("melpa" . "http://melpa.milkbox.net/packages/") t)
+            (add-to-list 'package-archives
+                         '("marmalade" . "https://marmalade-repo.org/packages/") t)))
+  (package-initialize))
+
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)                ;; if you use :diminish
+(require 'bind-key)                ;; if you use any :bind variant
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/elisp"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/einit"))
-
-;;(setq default-directory "~/.emacs.d/")
-;;(normal-top-level-add-subdirs-to-load-path)
 
 (require 'initd)
 (initd-init)

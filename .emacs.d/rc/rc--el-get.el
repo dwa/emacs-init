@@ -1,12 +1,4 @@
-;;; Time-stamp: <2015-07-19 23:15:58 davidwallin>
-
-(when (>= emacs-major-version 24)
-  (eval-after-load "package"
-    '(progn (add-to-list 'package-archives
-                         '("melpa" . "http://melpa.milkbox.net/packages/") t)
-            (add-to-list 'package-archives
-                         '("marmalade" . "http://marmalade-repo.org/packages/") t)))
-  (package-initialize))
+;;; Time-stamp: <2015-07-30 15:04:41 davidwallin>
 
 ;;; Code:
 
