@@ -187,8 +187,6 @@
                         ;; the brackets gets invisible on the terminal with parenface:
                         (when t ;window-system
                           (require 'parenface))))
-        (:name pcmpl-git :after (require 'pcmpl-git))
-        (:name pcmpl-ssh :after (require 'pcmpl-ssh))
         (:name flycheck :after (progn (defun my-flycheck-keybindings ()
                                         (interactive)
                                         (local-set-key (kbd "C-c C-k") 'flycheck-buffer)
