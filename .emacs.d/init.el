@@ -32,6 +32,52 @@
 (require 'initd)
 (initd-init)
 
+(use-package helm
+  :config
+  ;; some stuff here comes from:
+  ;; https://tuhdo.github.io/helm-intro.html
+  ;;
+  ;; must set before helm-config,  otherwise helm use default
+  ;; prefix "C-x c", which is inconvenient because you can
+  ;; accidentially pressed "C-x C-c"
+  (setq helm-command-prefix-key "C-c h")
+  (require 'helm-config)
+  (require 'helm-eshell)
+  (require 'helm-files)
+  (require 'helm-grep)
+
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  ;; This is your old M-x.
+  (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+  (define-key helm-map (kbd "C-RET") 'helm-execute-persistent-action)
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)
+  (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+  (global-set-key (kbd "C-x C-r") 'helm-recentf)
+
+  (setq ido-use-virtual-buffers t ; Needed in helm-buffers-list (?)
+        )
+  (helm-mode 1)
+  (add-to-list 'special-display-regexps
+               '("\\*[hH]elm.*\\*$" (same-frame . t)))
+  (add-to-list 'special-display-buffer-names
+               '("*helm buffers*" (same-frame . t)))
+  (add-to-list 'special-display-buffer-names
+               '("*helm mini*" (same-frame . t)))
+  (set-face-attribute 'helm-selection nil
+                                        ;                                            :background "#441100"
+                      :underline nil)
+  :ensure t)
+
+(use-package helm-ag
+  :commands (helm-ag)
+  :bind ("C-c C-a" . helm-ag)
+  :ensure t)
+
+(use-package helm-descbinds
+  :config
+  (helm-descbinds-install)
+  :ensure t)
+
 (use-package edit-list
   :commands (edit-list)
   :ensure t)
