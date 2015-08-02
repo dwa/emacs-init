@@ -12,6 +12,9 @@
                          '("marmalade" . "https://marmalade-repo.org/packages/") t)))
   (package-initialize))
 
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
 (eval-when-compile
   (require 'use-package))
 (require 'diminish)                ;; if you use :diminish
