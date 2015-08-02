@@ -1,6 +1,4 @@
-;;; Time-stamp: <2013-04-14 00:25:06 dwa>
-
-
+;;; Time-stamp: <2015-08-02 01:49:25 davidwallin>
 
 ;;; Code:
 
@@ -82,8 +80,6 @@ to the contents of the accessible portion of the buffer."
 	     (list "%(lln)" (lambda ()
 			      (format "%d" (1+ (ll-line-number-at-pos)))))))
 
-(require 'bds)
-(setq bds-password-file (expand-file-name "~/bds/.bds-password"))
 
 (defun reftex-occur-document (regexp &optional nlines)
   "Run an occur query through all files related to this document.
@@ -95,10 +91,25 @@ No active TAGS table is required."
 			collect (find-file-noselect i))))
     (multi-occur buffers regexp nlines)))
 
-
-(autoload 'cdlatex-mode "cdlatex" "CDLaTeX Mode" t)
-(autoload 'turn-on-cdlatex "cdlatex" "CDLaTeX Mode" nil)
-(add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)   ; with AUCTeX LaTeX mode
+;; TODO: ensure auctex
+;; add to cdlatex:
+;; q1 : \( \)
+;; q2 : \[ \]
+(use-package cdlatex
+  :commands (turn-on-cdlatex cdlatex-mode)
+  :init
+  (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
+  :config
+  (add-to-list 'cdlatex-command-alist
+               '("cp" "add \\citep{}" "\\citep{?}"cdlatex-position-cursor nil t nil))
+  (add-to-list 'cdlatex-command-alist
+               '("q1" "add math environment \\( \\)" "\\(?\\)"
+                 cdlatex-position-cursor nil t nil))
+  (add-to-list 'cdlatex-command-alist
+               '("q2" "add math environment \\[ \\]" "\\[?\\]"
+                 cdlatex-position-cursor nil t nil))
+  (cdlatex-compute-tables)
+  :ensure t)
 
 ;;
 ;; use cref instead:
@@ -130,17 +141,7 @@ No active TAGS table is required."
 (add-hook 'reftex-mode-hook 'reftex-cref-keybindings)
 
 
-;; add to cdlatex:
-;; q1 : \( \)
-;; q2 : \[ \]
 
-(eval-after-load "cdlatex"
-  '(progn (add-to-list 'cdlatex-command-alist '("cp" "add \\citep{}" "\\citep{?}"cdlatex-position-cursor nil t nil))
-	  (add-to-list 'cdlatex-command-alist '("q1" "add math environment \\( \\)" "\\(?\\)" cdlatex-position-cursor nil t nil))
-	  (add-to-list 'cdlatex-command-alist '("q2" "add math environment \\[ \\]" "\\[
-?
-\\]" cdlatex-position-cursor nil t nil))
-	  (cdlatex-compute-tables)))
 
 ;;
 ;; Replace the xpdf as View command (with 'open') on the mac:

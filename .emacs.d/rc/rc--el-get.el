@@ -44,7 +44,6 @@
                         (add-hook 'c++-mode-hook
                                   '(lambda ()
                                      (add-to-list 'ac-sources 'ac-source-clang)))))
-        cdlatex-mode
         (:name cedet
                :after (progn
                         (setq semanticdb-default-save-directory (expand-file-name "~/.emacs.d/.semanticdb")
