@@ -17,7 +17,6 @@
 (require 'diminish)                ;; if you use :diminish
 (require 'bind-key)                ;; if you use any :bind variant
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/elisp"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/einit"))
 
@@ -63,7 +62,7 @@
 (cd "~/")
 
 ;;; ------------------------------------------------------------------- [custom]
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file "~/.emacs.d/elisp/custom.el")
 (load custom-file 'noerror)
 
 ;;; ------------------------------------------------------------------ [the end]
