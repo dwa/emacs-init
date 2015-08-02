@@ -23,6 +23,12 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/elisp"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/einit"))
 
+(use-package exec-path-from-shell
+  :if (memq window-system '(mac ns))
+  :config
+  (exec-path-from-shell-initialize)
+  :ensure t)
+
 (require 'initd)
 (initd-init)
 
