@@ -1,5 +1,5 @@
 ;;; -*- emacs-lisp -*-
-;;; Time-stamp: <2015-07-30 15:04:04 davidwallin>
+;;; Time-stamp: <2015-08-02 23:29:08 davidwallin>
 ;;; David Wallin <dwa@havanaclub.org>
 
 ;;; Code:
@@ -88,8 +88,123 @@
   (setq yas/trigger-key "S-SPC")
   (yas-global-mode 1))
 
-;; (use-package auto-complete-yasnippet
-;;   :ensure t)
+(use-package auto-complete
+  :init
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+  :config
+  (require 'auto-complete)
+  (require 'auto-complete-config)
+  (ac-config-default)
+  (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+  (add-to-list 'ac-sources 'ac-source-yasnippet))
+
+(use-package cedet
+  :init
+  (setq semanticdb-default-save-directory (expand-file-name "~/.emacs.d/.semanticdb")
+        semanticdb-persistent-path
+        (list (expand-file-name "~/.emacs.d/semantic-cache")))
+  :config
+  (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t)
+  (add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode t)
+  (add-to-list 'semantic-default-submodes 'global-semantic-show-unmatched-syntax-mode t)
+
+  (add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t)
+  (add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t)
+
+  (global-ede-mode 1)
+
+  (semantic-load-enable-code-helpers)
+  (global-semanticdb-minor-mode 1))
+
+(use-package session
+  :init
+  (add-hook 'after-init-hook 'session-initialize)
+  :ensure t)
+
+(use-package smartparens
+  :init
+  :config
+  (require 'smartparens)
+  (require 'smartparens-config)
+  (setq sp-highlight-pair-overlay nil)
+  (sp-use-paredit-bindings)
+  (define-key sp-keymap (kbd ")") 'sp-up-sexp)
+  (smartparens-global-mode t)
+  (show-smartparens-global-mode t)
+  :ensure t)
+
+(use-package ack-menu
+  :ensure t)
+
+(use-package ansible-doc
+  :ensure t)
+
+(use-package yaml-mode
+  :init
+  (add-hook 'yaml-mode-hook #'ansible-doc-mode)
+  :ensure t)
+
+(use-package dictionary
+  :commands (dictionary-search dictionary-match-words)
+  :init
+  (bind-key "\C-cs" 'dictionary-search)
+  (bind-key "\C-cm" 'dictionary-match-words)
+  :ensure t)
+
+(use-package color-moccur
+  :commands (isearch-moccur isearch-all)
+  :bind ("M-s O" . moccur)
+  :init
+  (bind-key "M-o" 'isearch-moccur isearch-mode-map)
+  (bind-key "M-O" 'isearch-moccur-all isearch-mode-map)
+;  :config
+;  (use-package moccur-edit :ensure t)
+  :ensure t)
+
+(use-package flycheck
+  :config
+  (defun my-flycheck-keybindings ()
+    (interactive)
+    (local-set-key (kbd "C-c C-k") 'flycheck-buffer)
+    (local-set-key (kbd "M-n") 'next-error)
+    (local-set-key (kbd "M-p") 'previous-error))
+
+  (add-hook 'flycheck-mode-hook
+            #'my-flycheck-keybindings)
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  :ensure t)
+
+
+(use-package lentic
+  :ensure t)
+
+(use-package lacarte
+  :ensure t)
+
+(use-package multiple-cursors
+  :ensure t)
+
+(use-package request-deferred
+  :ensure t)
+
+(use-package rainbow-delimiters
+  :ensure t)
+
+;; docker
+(use-package docker
+  :ensure t)
+
+;(use-package docker-tramp
+;  :ensure t)
+
+(use-package dockerfile-mode
+  :mode "Dockerfile"
+  :ensure t)
+
+;; SQL
+
+(use-package edbi
+  :ensure t)
 
 ;;; --------------------------------------------------- [line ending conversion]
 
