@@ -151,60 +151,6 @@
                                       (add-hook 'after-init-hook #'global-flycheck-mode)))
         (:name session
 	       :after (progn (add-hook 'after-init-hook 'session-initialize)))
-        (:name slime
-               :after (progn
-                        (defmacro defslime (backend)
-                          (let ((buff (concat "*inferior-lisp-" (symbol-name backend) "*")))
-                            `(defun ,backend nil
-                               (interactive)
-                               (apply #'slime-start
-                                      (list* :buffer ,buff
-                                             (slime-lookup-lisp-implementation slime-lisp-implementations
-                                                                               (quote ,backend)))))))
-
-                        (slime-setup '(slime-fancy slime-asdf slime-hyperdoc slime-highlight-edits))
-
-                        (defslime sbcl)
-                        ;; (defslime cmucl)
-                        (defslime clisp)
-                        (defslime clozure)
-                        ;; (defslime abcl)
-
-                        (add-to-list 'slime-lisp-implementations
-                                     '(sbcl ("sbcl") :coding-system utf-8-unix))
-
-                        (add-to-list 'slime-lisp-implementations
-                                     '(clisp ("clisp" "-ansi" "-I") :coding-system utf-8-unix))
-
-                        (add-to-list 'slime-lisp-implementations
-                                     '(clozure ("ccl"
-                                                "-K" "utf-8"
-                                                "--eval" "(require :asdf)") :coding-system utf-8-unix))
-
-                        (add-hook 'inferior-lisp-mode-hook (lambda ()
-                                                             (inferior-slime-mode t)
-                                                             (my-lisp-keybindings)))
-
-                        (add-hook 'slime-repl-mode-hook (lambda ()
-                                                          (my-lisp-keybindings)))
-
-                        (add-hook 'lisp-mode-hook (lambda ()
-                                                    (slime-mode t)
-                                                    ;; 			    (slime-highlight-edits-mode t)
-                                                    (local-set-key "\r" 'newline-and-indent)
-                                                    (local-set-key [C-S-tab]
-                                                                   'slime-indent-and-complete-symbol)
-                                                    (local-set-key [C-S-iso-lefttab]
-                                                                   'slime-indent-and-complete-symbol)
-
-                                                    ;; use my keybindings (see above):
-                                                    (my-lisp-keybindings)
-                                                    (setq lisp-indent-function
-                                                          'common-lisp-indent-function)
-                                                    (setq indent-tabs-mode nil)))
-                        (add-to-list 'special-display-buffer-names "*SLIME Compiler-Notes*")
-                        (add-to-list 'special-display-buffer-names '("*SLIME macroexpansion*" (same-frame . t)))
-                        (add-to-list 'special-display-regexps '("\\*sldb sbcl/[0-9]+\\*" (same-frame . t)))))
         (:name smartparens
                :after (progn
                         (require 'smartparens)
