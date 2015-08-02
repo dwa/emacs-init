@@ -1,4 +1,4 @@
-;;; Time-stamp: <2015-07-21 11:04:16 davidwallin>
+;;; Time-stamp: <2015-07-31 00:46:49 davidwallin>
 
 
 ;;; Code:
@@ -39,32 +39,6 @@
 (add-hook 'proced-mode-hook 'hl-line-mode)
 
 (put 'downcase-region 'disabled nil)
-
-(defun count-words-region (beginning end)
-  "Print number of words in the region."
-  (interactive "r")
-  (message "Counting words in region ... ")
-
-;;; 1. Set up appropriate conditions.
-  (save-excursion
-    (let ((count 0))
-      (goto-char beginning)
-
-;;; 2. Run the while loop.
-      (while (and (< (point) end)
-		  (re-search-forward "\\w+\\W*" end t))
-	(setq count (1+ count)))
-
-;;; 3. Send a message to the user.
-      (cond ((zerop count)
-	     (message
-	      "The region does NOT have any words."))
-	    ((= 1 count)
-	     (message
-	      "The region has 1 word."))
-	    (t
-	     (message
-	      "The region has %d words." count))))))
 
 ;;
 ;; from http://www.emacswiki.org/emacs/CommentingCode:
@@ -132,8 +106,9 @@
 
 (add-hook 'write-file-hooks 'time-stamp)
 
-(require 'tramp)
-(setq tramp-default-method "scp")
+(use-package tramp
+  :init
+  (setq tramp-default-method "scp"))
 
 ;; no blinking cursor
 (blink-cursor-mode -1)
@@ -142,26 +117,7 @@
   (mouse-wheel-mode t))
 
 ;; smooth scrolling
-(setq scroll-conservatively 10000
-      redisplay-dont-pause t)
-
-
-;(global-set-key (kbd "C-x C-b") 'ibuffer)
-(autoload 'ibuffer "ibuffer" "List buffers." t)
-(add-hook 'ibuffer-mode-hook 'hl-line-mode)
-
-;; Turn on highlight-changes in all modes that support it
-;(global-highlight-changes 'passive)
-
-;; Remove highlightning of the buffer when the buffer is saved
-;; (add-hook 'after-save-hook
-;; 	  '(lambda () (let ((mode (if (string-equal hilit-chg-string
-;; 					highlight-changes-passive-string)
-;; 				      'passive
-;; 				    'active)))
-;; 			      (highlight-changes-mode -1)
-;; 			      (highlight-changes-mode mode)
-;; 			      (set-buffer-modified-p nil))))
+(setq scroll-conservatively 10000)
 
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
@@ -182,7 +138,7 @@
 
 (if (eq system-type 'darwin)
     (setq browse-url-browser-function 'browse-url-default-macosx-browser)
-                                        ;(setq browse-url-browser-function 'browse-url-firefox-new-tab)
+  ;;(setq browse-url-browser-function 'browse-url-firefox-new-tab)
   )
 
 (global-set-key (kbd "C-c b") 'browse-url-at-point)
