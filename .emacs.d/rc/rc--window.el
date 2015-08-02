@@ -1,4 +1,4 @@
-;;; Time-stamp: <2015-07-18 20:34:02 davidwallin>
+;;; Time-stamp: <2015-08-02 02:32:27 davidwallin>
 ;;; Code:
 
 ;;
@@ -31,15 +31,20 @@
 
 (setq initial-frame-alist default-frame-alist)
 
-(if (daemonp)
-    (add-hook 'after-make-frame-functions
-	      (lambda (frame)
-		(load-theme 'solarized t)
-                (if (display-graphic-p frame)
-                    (enable-theme 'solarized)
-;                  (disable-theme 'solarized)
-                  )))
-  (load-theme 'solarized t))
+(use-package color-theme-solarized
+  :init
+  (use-package color-theme)
+  :config
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions
+                (lambda (frame)
+                  (load-theme 'solarized t)
+                  (if (display-graphic-p frame)
+                      (enable-theme 'solarized)
+                                        ;                  (disable-theme 'solarized)
+                    )))
+    (load-theme 'solarized t))
+  :ensure t)
 
 (setq view-remove-frame-by-deleting t)
 
