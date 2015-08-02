@@ -1,15 +1,15 @@
-;;; Time-stamp: <2013-04-14 00:25:06 dwa>
+;;; Time-stamp: <2015-08-02 03:50:52 davidwallin>
 
 
 ;;; Code:
 
-(add-hook 'java-mode-hook 'flymake-mode-on)
-(defun my-java-flymake-init ()
-  (list "javac" (list (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-with-folder-structure))))
+;; (add-hook 'java-mode-hook 'flymake-mode-on)
+;; (defun my-java-flymake-init ()
+;;   (list "javac" (list (flymake-init-create-temp-buffer-copy
+;;                        'flymake-create-temp-with-folder-structure))))
 
-(add-to-list 'flymake-allowed-file-name-masks
-             '("\.java$" my-java-flymake-init flymake-simple-cleanup))
+;; (add-to-list 'flymake-allowed-file-name-masks
+;;              '("\.java$" my-java-flymake-init flymake-simple-cleanup))
 
 
 ;; emacs-eclim <HERE>
