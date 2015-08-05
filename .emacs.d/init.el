@@ -258,6 +258,12 @@
         )
   (sml/setup)
   :ensure t)
+(use-package ssh-tunnels
+  :commands (ssh-tunnels)
+  :init
+  (load-file "~/.secrets.d/ssh-tunnels.el")
+  :ensure t)
+
 ;;; --------------------------------------------------- [line ending conversion]
 
 (defun to-mac ()
