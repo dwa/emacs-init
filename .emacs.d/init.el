@@ -244,6 +244,14 @@
 (use-package edbi
   :ensure t)
 
+
+(use-package smart-mode-line
+  :config
+  (setq sml/theme 'respectful
+;        sml/no-confirm-load-theme t
+        )
+  (sml/setup)
+  :ensure t)
 ;;; --------------------------------------------------- [line ending conversion]
 
 (defun to-mac ()
