@@ -8,6 +8,19 @@
   (add-hook 'inferior-python-mode-hook 'jedi:setup)
   ;; (setq jedi:tooltip-method nil)
   :defer t
+  :disabled t
+  :ensure t)
+
+(use-package anaconda-mode
+  :commands (anaconda-mode)
+  :init
+  (add-hook 'python-mode-hook #'anaconda-mode)
+  :ensure t)
+
+(use-package ac-anaconda
+  :commands (ac-anaconda-setup)
+  :init
+  (add-hook 'python-mode-hook #'ac-anaconda-setup)
   :ensure t)
 
 (use-package python
