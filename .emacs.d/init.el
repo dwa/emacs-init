@@ -213,9 +213,26 @@
 
   (add-hook 'flycheck-mode-hook
             #'my-flycheck-keybindings)
+
+  ;; https://github.com/flycheck/flycheck/issues/692
+  (declare-function python-shell-calculate-exec-path "python")
+
+  (defun flycheck-virtualenv-set-python-executables ()
+    "Set Python executables for the current buffer."
+    (let ((exec-path (python-shell-calculate-exec-path)))
+      (setq-local flycheck-python-pylint-executable
+                  (executable-find "pylint"))
+      (setq-local flycheck-python-flake8-executable
+                  (executable-find "flake8"))))
+
+  (add-hook 'hack-local-variables-hook
+            #'(lambda ()
+                (when (derived-mode-p 'python-mode)
+                (flycheck-virtualenv-set-python-executables)))
+            'local)
+
   (add-hook 'after-init-hook #'global-flycheck-mode)
   :ensure t)
-
 
 (use-package lentic
   :ensure t)
