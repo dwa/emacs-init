@@ -185,10 +185,8 @@
   :ensure t)
 
 (use-package dictionary
-  :commands (dictionary-search dictionary-match-words)
-  :init
-  (bind-key "\C-cs" 'dictionary-search)
-  (bind-key "\C-cm" 'dictionary-match-words)
+  :bind (("C-c s" . dictionary-search)
+         ("C-c m" . dictionary-match-words))
   :ensure t)
 
 (use-package color-moccur
