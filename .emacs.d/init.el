@@ -248,6 +248,8 @@
 (use-package edbi
   :ensure t)
 
+(use-package pass
+  :ensure t)
 
 (use-package smart-mode-line
   :config
