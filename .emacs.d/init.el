@@ -270,9 +270,7 @@
 
 (use-package smart-mode-line
   :config
-  (setq sml/theme 'respectful
-;        sml/no-confirm-load-theme t
-        )
+  (setq sml/theme 'respectful)
   (sml/setup)
   :ensure t)
 (use-package ssh-tunnels
