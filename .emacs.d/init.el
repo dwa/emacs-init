@@ -20,6 +20,15 @@
 (require 'diminish)                ;; if you use :diminish
 (require 'bind-key)                ;; if you use any :bind variant
 
+(use-package session
+  :init
+  (add-hook 'after-init-hook 'session-initialize)
+  :ensure t)
+
+(setq custom-file "~/.emacs.d/elisp/custom.el")
+(load custom-file)
+
+
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/elisp"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/einit"))
 
@@ -156,11 +165,6 @@
   (semantic-load-enable-code-helpers)
   (global-semanticdb-minor-mode 1))
 
-(use-package session
-  :init
-  (add-hook 'after-init-hook 'session-initialize)
-  :ensure t)
-
 (use-package smartparens
   :init
   :config
@@ -276,9 +280,5 @@
 (global-set-key (kbd "M-*") 'tags-loop-continue)
 
 (cd "~/")
-
-;;; ------------------------------------------------------------------- [custom]
-(setq custom-file "~/.emacs.d/elisp/custom.el")
-(load custom-file 'noerror)
 
 ;;; ------------------------------------------------------------------ [the end]
