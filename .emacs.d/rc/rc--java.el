@@ -1,4 +1,4 @@
-;;; Time-stamp: <2015-08-02 03:50:52 davidwallin>
+;;; Time-stamp: <2015-08-06 02:13:47 davidwallin>
 
 
 ;;; Code:
@@ -16,22 +16,16 @@
 
 ;(setq-mode-local java-mode ac-sources (append '(ac-source-semantic) ac-sources))
 
-(unless (getenv "JAVA_HOME")
-  (setenv "JAVA_HOME" "/usr/lib/jvm/java-7-openjdk-amd64"))
+;; (unless (getenv "JAVA_HOME")
+;;   (setenv "JAVA_HOME" "/usr/lib/jvm/java-7-openjdk-amd64"))
 
-(setq ;cedet-java-jdk-root (getenv "JAVA_HOME")
-      semanticdb-javap-classpath (concat (getenv "JAVA_HOME") "/jre/lib/rt.jar"))
+;; (setq ;cedet-java-jdk-root (getenv "JAVA_HOME")
+;;       semanticdb-javap-classpath (concat (getenv "JAVA_HOME") "/jre/lib/rt.jar"))
 
-(semantic-add-system-include (getenv "JAVA_HOME") 'java-mode)
+;; (semantic-add-system-include (getenv "JAVA_HOME") 'java-mode)
 
 ;; cedet/semantic
 (add-hook 'java-mode-hook '(lambda ()
-;;                             (semantic-mode 1)
-                             ;; (semantic-idle-completions-mode 1)
-                             ;; (semantic-decoration-mode 1)
-                             ;; (semantic-highlight-func-mode 1)
-                             ;; (semantic-show-unmatched-syntax-mode 1)
-
                              ;; use semantic with auto-complete:
                              (add-to-list 'ac-sources 'ac-source-semantic)
                              ))
