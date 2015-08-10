@@ -28,7 +28,6 @@
 (setq custom-file "~/.emacs.d/elisp/custom.el")
 (load custom-file)
 
-
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/elisp"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/einit"))
 
@@ -146,16 +145,14 @@
   :init
   (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
   :config
-  (require 'auto-complete)
   (require 'auto-complete-config)
   (ac-config-default)
   (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
-  (add-to-list 'ac-sources 'ac-source-yasnippet))
+  (add-to-list 'ac-sources 'ac-source-yasnippet)
+  :ensure t)
 
 (use-package smartparens
-  :init
   :config
-  (require 'smartparens)
   (require 'smartparens-config)
   (setq sp-highlight-pair-overlay nil)
   (sp-use-paredit-bindings)
