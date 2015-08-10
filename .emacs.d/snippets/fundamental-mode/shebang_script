@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: shebang script
+# key: shebx
+# --
+#!/usr/bin/env ${1:bash}
+
+### $(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))
+###
+### copyright (c) $(format-time-string "%Y" (current-time)). all rights reserved.
+### $(user-full-name) <$(user-mail-address)>
+$(progn (normal-mode) "")
+$0
