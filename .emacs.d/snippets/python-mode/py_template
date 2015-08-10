@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: python template
+# key: pytmpl
+# --
+###
+### Author: `(user-full-name)`
+### Time-stamp: <2015-08-11 00:59:08 davidwallin>
+
+$0
+
+## Local Variables: ***
+## mode:python ***
+## coding: utf-8 ***
+## End: ***
