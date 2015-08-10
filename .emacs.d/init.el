@@ -261,6 +261,10 @@
   (load-file "~/.secrets.d/ssh-tunnels.el")
   :ensure t)
 
+
+(use-package paradox
+  :ensure t)
+
 ;;; --------------------------------------------------- [line ending conversion]
 
 (defun to-mac ()
