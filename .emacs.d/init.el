@@ -46,6 +46,7 @@
          ("C-c C-c M-x" . execute-extended-command)
          ("C-RET" . helm-execute-persistent-action)
          ("C-x C-f" . helm-find-files)
+         ("C-x b" . helm-mini)
          ("C-x C-b" . helm-buffers-list)
          ("C-x C-r" . helm-recentf))
   :config
@@ -72,6 +73,10 @@
                '("*helm mini*" (same-frame . t)))
   (set-face-attribute 'helm-selection nil
                       :underline nil)
+  (helm-autoresize-mode t)
+  :ensure t)
+
+(use-package helm-ls-git
   :ensure t)
 
 (use-package helm-ag
