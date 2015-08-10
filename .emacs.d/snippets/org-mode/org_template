@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: org template
+# key: orgtmpl
+# --
+###
+### Author: `(user-full-name)`
+### Time-stamp: <2015-08-11 00:15:34 davidwallin>
+
+#+TITLE: ${title}
+#+Author: `(user-full-name)`
+#+Email: `user-mail-address`
+
+$0
+
+## Local Variables: ***
+## coding: utf-8 ***
+## End: ***
