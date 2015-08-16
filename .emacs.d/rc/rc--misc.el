@@ -1,4 +1,4 @@
-;;; Time-stamp: <2015-07-31 00:46:49 davidwallin>
+;;; Time-stamp: <2015-08-16 00:25:30 davidwallin>
 
 
 ;;; Code:
@@ -98,7 +98,7 @@
 (global-set-key (kbd "M-<right>") 'forward-sexp)
 (global-set-key (kbd "M-<left>") 'backward-sexp)
 
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;
 ;; we want to save ourselves from having to do a chmod on newly created scripts:
