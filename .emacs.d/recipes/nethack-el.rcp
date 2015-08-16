@@ -1,0 +1,5 @@
+(:name nethack-el
+       :website "https://github.com/tali713/nethack-el.git"
+       :description "nethack-el"
+       :type github
+       :pkgname "dwa/nethack-el")
