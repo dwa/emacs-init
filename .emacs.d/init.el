@@ -78,6 +78,9 @@
 (use-package helm-ls-git
   :ensure t)
 
+(use-package helm-c-yasnippet
+  :ensure t)
+
 (use-package helm-ag
   :commands (helm-ag)
   :bind ("C-c C-a" . helm-ag)
