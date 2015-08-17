@@ -277,6 +277,8 @@
 
 
 (use-package paradox
+  :config
+  (paradox-enable)
   :ensure t)
 
 ;;; --------------------------------------------------- [line ending conversion]
