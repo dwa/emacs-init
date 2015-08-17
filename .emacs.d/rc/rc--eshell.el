@@ -1,4 +1,4 @@
-;;; Time-stamp: <2015-07-21 13:15:13 davidwallin>
+;;; Time-stamp: <2015-08-17 15:21:38 davidwallin>
 ;;; Code:
 
 (use-package eshell
@@ -58,6 +58,7 @@ Completion is available."))
         (view-file (pop args)))))
   (use-package pcmpl-git :ensure t)
   (use-package pcmpl-pip :ensure t)
-  (use-package pcmpl-homebrew :ensure t))
+  (use-package pcmpl-homebrew :ensure t)
+  (use-package pcomplete-extension :ensure t))
 
 ;;; ----------------------------------------------------------------- [the end]
