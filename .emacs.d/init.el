@@ -57,12 +57,21 @@
   ;; accidentially pressed "C-x C-c"
   (setq helm-command-prefix-key "C-c h")
   (require 'helm-config)
-  (require 'helm-eshell)
+
+  (use-package helm-eshell
+    :commands (helm-esh-pcomplete)
+    :init
+    (add-hook 'eshell-mode-hook
+              (lambda ()
+                (define-key eshell-mode-map
+                  [remap eshell-pcomplete]
+                  'helm-esh-pcomplete))))
+
   (require 'helm-files)
   (require 'helm-grep)
 
-  (setq ido-use-virtual-buffers t ; Needed in helm-buffers-list (?)
-        )
+  ;; (setq ido-use-virtual-buffers t ; Needed in helm-buffers-list (?)
+  ;;       )
   (helm-mode 1)
   (add-to-list 'special-display-regexps
                '("\\*[hH]elm.*\\*$" (same-frame . t)))
