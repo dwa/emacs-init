@@ -278,6 +278,7 @@
 
 (use-package paradox
   :config
+  (setq paradox-execute-asynchronously t)
   (paradox-enable)
   :ensure t)
 
