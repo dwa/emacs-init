@@ -4,9 +4,9 @@
 # --
 #!/usr/bin/env ${1:bash}
 
-### $(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))
+### `(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`
 ###
-### copyright (c) $(format-time-string "%Y" (current-time)). all rights reserved.
-### $(user-full-name) <$(user-mail-address)>
-$(progn (normal-mode) "")
-$0
+### copyright (c) `(format-time-string "%Y" (current-time))`. all rights reserved.
+### `(user-full-name)` <`user-mail-address`>
+${2:$$(progn (normal-mode) "")}
+
