@@ -70,8 +70,6 @@
   (require 'helm-files)
   (require 'helm-grep)
 
-  ;; (setq ido-use-virtual-buffers t ; Needed in helm-buffers-list (?)
-  ;;       )
   (helm-mode 1)
   (add-to-list 'special-display-regexps
                '("\\*[hH]elm.*\\*$" (same-frame . t)))
