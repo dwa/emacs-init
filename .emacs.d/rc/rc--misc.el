@@ -1,4 +1,4 @@
-;;; Time-stamp: <2015-08-16 00:25:30 davidwallin>
+;;; Time-stamp: <2015-09-14 21:15:52 davidwallin>
 
 
 ;;; Code:
@@ -61,11 +61,6 @@
 
 ;; (global-set-key "\M-;" 'comment-dwim-line)
 
-(add-to-list 'special-display-buffer-names '("*Apropos*" (same-window . t)))
-(add-to-list 'special-display-buffer-names '("*Help*" (same-window . t)))
-
-(add-to-list 'special-display-buffer-names '("*Completions*" (same-frame . t)))
-(add-to-list 'special-display-buffer-names '("*Backtrace*" (same-frame . t)))
 
 (defun dired-w3m-find-file ()
   "In Dired, visit the file or directory named on this line."

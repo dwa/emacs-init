@@ -1,4 +1,4 @@
-;;; Time-stamp: <2013-04-14 11:53:46 dwa>
+;;; Time-stamp: <2015-09-14 21:16:24 davidwallin>
 
 
 ;;; Code:
@@ -14,8 +14,6 @@
 ;; This line binds the function-9 key so that it opens a buffer into
 ;; gnuplot mode
 ;  (global-set-key [(f9)] 'gnuplot-make-buffer)
-
-(add-to-list 'special-display-buffer-names '("*gnuplot*" (same-frame . t)))
 
 
 ;;; ----------------------------------------------------------------- [the end]

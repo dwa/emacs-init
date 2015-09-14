@@ -1,4 +1,4 @@
-;;; Time-stamp: <2015-07-24 00:51:07 davidwallin>
+;;; Time-stamp: <2015-09-14 23:48:14 davidwallin>
 
 ;;; Code:
 
@@ -7,6 +7,10 @@
   :bind ("<f12>" . magit-status)
   :config
   ;; http://www.newartisans.com/blog/2008/08/omitting-git-ignored-files-in-emacs-dired.html :
+
+  (add-to-list 'display-buffer-alist
+               '("\\*magit-diff:.*". ((display-buffer-pop-up-window) .
+                                      ((inhibit-same-window . t)))))
 
   (add-hook 'dired-load-hook #'(lambda nil (load "dired-x" t)))
   (eval-after-load "dired-x"
@@ -51,8 +55,6 @@
                    "\\|")
                   "\\)"))
              (funcall dired-omit-regexp-orig))))))
-
-  (add-to-list 'special-display-buffer-names '("*magit-commit*" (same-frame . t)))
   :ensure t)
 
 ;;; ----------------------------------------------------------------- [the end]

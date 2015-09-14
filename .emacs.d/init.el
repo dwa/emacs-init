@@ -71,12 +71,17 @@
   (require 'helm-grep)
 
   (helm-mode 1)
-  (add-to-list 'special-display-regexps
-               '("\\*[hH]elm.*\\*$" (same-frame . t)))
-  (add-to-list 'special-display-buffer-names
-               '("*helm buffers*" (same-frame . t)))
-  (add-to-list 'special-display-buffer-names
-               '("*helm mini*" (same-frame . t)))
+  ;; (add-to-list 'display-buffer-alist
+  ;;              '("\\*helm M-x\\*". ((display-buffer-pop-up-window) .
+  ;;                                    ((inhibit-same-window . t)))))
+  ;; (add-to-list 'display-buffer-alist
+  ;;              '("\\*helm-ag\\*". ((display-buffer-pop-up-window) .
+  ;;                                   ((inhibit-same-window . t)))))
+  
+  ;; (add-to-list 'display-buffer-alist
+  ;;              '("\\*helm mini\\*". ((display-buffer-pop-up-window) .
+  ;;                                    ((inhibit-same-window . t)))))
+
   (set-face-attribute 'helm-selection nil
                       :underline nil)
   (helm-autoresize-mode t)

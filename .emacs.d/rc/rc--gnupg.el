@@ -1,9 +1,8 @@
-;;; Time-stamp: <2015-07-21 12:49:47 davidwallin>
+;;; Time-stamp: <2015-09-14 21:16:12 davidwallin>
 ;;; Code:
 
 (use-package epa
   :init
-  (add-to-list 'special-display-buffer-names '("*Keys*" (same-frame . t)))
   (setq epa-file-cache-passphrase-for-symmetric-encryption t))
 
 (use-package epg
