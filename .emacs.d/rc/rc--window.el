@@ -1,4 +1,4 @@
-;;; Time-stamp: <2015-08-02 02:32:27 davidwallin>
+;;; Time-stamp: <2015-08-31 10:17:23 davidwallin>
 ;;; Code:
 
 ;;
@@ -20,7 +20,7 @@
                                         ; )
 
 ;;  (add-to-list 'default-frame-alist '(font . "Source Code Pro-9"))
-(add-to-list 'default-frame-alist '(font . "Source Code Pro-12"))
+(add-to-list 'default-frame-alist '(font . "Source Code Pro-11"))
 (add-to-list 'default-frame-alist '(height . 50))
 (setq font-use-system-font t)
 
